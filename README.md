@@ -1,1 +1,284 @@
-# 25makita-training
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>導入期トレーニング（10–12月）— 社会人硬式：27歳・パワーヒッター</title>
+<style>
+  :root{--ink:#111;--muted:#666;--line:#ddd;--bg:#fafafa;--accent:#0a7;}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; color:var(--ink); margin:0; background:var(--bg);}
+  header{padding:16px 20px; background:#fff; position:sticky; top:0; border-bottom:1px solid var(--line); z-index:5;}
+  h1{font-size:18px; margin:0 0 6px;}
+  .sub{color:var(--muted); font-size:13px;}
+  .tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+  .tab{padding:8px 12px; border:1px solid var(--line); background:#fff; border-radius:8px; cursor:pointer; user-select:none;}
+  .tab.active{border-color:var(--accent); color:#fff; background:var(--accent);}
+  main{padding:16px; max-width:1100px; margin:0 auto;}
+  section{background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px; margin:12px 0;}
+  section h2{font-size:16px; margin:0 0 8px;}
+  .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+  .chip{display:inline-block; padding:3px 8px; border-radius:999px; border:1px solid var(--line); font-size:12px; color:var(--muted);}
+  .table-wrap{overflow-x:auto;}
+  table{width:100%; border-collapse:collapse; margin-top:8px; font-size:14px;}
+  th,td{border-bottom:1px solid var(--line); padding:8px 6px; text-align:left;}
+  th{background:#f6f6f6;} /* 固定なし */
+  input[type="number"], input[type="text"]{width:80px; padding:4px 6px; border:1px solid var(--line); border-radius:6px;}
+  input[type="text"].wide{width:100%;}
+  .rpe{width:54px;}
+  .vol{width:90px; color:#000; font-weight:600;}
+  .foot{display:flex; justify-content:space-between; align-items:center; margin-top:8px; color:var(--muted); font-size:13px;}
+  .btn{border:1px solid var(--line); background:#fff; padding:6px 10px; border-radius:8px; cursor:pointer; font-size:12px;}
+  .btn.ghost{border-color:#ccc; color:#444;}
+  .btn.primary{background:var(--accent); color:#fff; border-color:var(--accent);}
+  .total{font-weight:700; color:#000;}
+  .timer{display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+  .timer .time{font-variant-numeric:tabular-nums; font-size:18px; min-width:84px; text-align:center;}
+  .exercise{color:var(--accent); cursor:pointer; margin-right:8px;}
+  .desc{display:none; font-size:12px; color:var(--muted); margin-top:4px;}
+  /* Modal */
+  .modal{position:fixed; inset:0; background:rgba(0,0,0,.5); display:none; align-items:center; justify-content:center; z-index:20;}
+  .modal.open{display:flex;}
+  .modal-card{background:#fff; border-radius:12px; padding:12px; width:min(92vw,720px); box-shadow:0 10px 30px rgba(0,0,0,.25);}
+  .modal-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;}
+  .modal-title{font-size:16px; font-weight:700;}
+  .modal-body{display:grid; gap:10px;}
+  .modal-body img{width:100%; height:auto; border:1px solid var(--line); border-radius:8px;}
+  .placeholder{width:100%; aspect-ratio:16/9; border:1px dashed var(--line); border-radius:8px; display:grid; place-items:center; color:var(--muted); font-size:14px; background:#fafafa;}
+</style>
+</head>
+<body>
+<header>
+  <h1>導入期トレーニング（10–12月）</h1>
+  <div class="sub">骨盤分離の習慣化 × BIG3強度維持 × 反応力（自走式） × 体重−3kg（電動式）</div>
+  <div class="tabs" id="tabs"></div>
+</header>
+
+<main id="content"></main>
+
+<!-- Illustration Modal -->
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div class="modal-title" id="modalTitle">イラスト</div>
+      <button class="btn" onclick="closeModal()">閉じる</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* ========== Day1〜Day5 定義（img は任意。指定すれば画像、未指定ならSVGプレースホルダ） ========== */
+const PROGRAM = [
+  {title:"Day1｜下半身パワー × 自走式", treadmill:"自走式",
+   warmup:["四つ這い骨盤前傾/後傾/回旋","レッドコード・ヒップヒンジ","スライドボード・ラテラルランジ"],
+   main:[
+     {ex:"バックスクワット",sets:5,reps:5,rpe:true,
+      desc:"ラックからバーベルを担ぎ、足を肩幅に開いてしゃがむ。胸を張り、膝とつま先の方向を揃える。", img:"img/backsquat.jpg"},
+     {ex:"ランドマイン・リバースランジ",sets:4,reps:8,rpe:true,
+      desc:"ランドマインを保持し後方へ大きくステップ。前脚で強く押し戻す。", img:"img/landmine_reverse_lunge.jpg"},
+     {ex:"ルーマニアンデッドリフト",sets:4,reps:8,rpe:true,
+      desc:"膝は軽く曲げたまま股関節で前傾。ハムの伸張を感じて戻る。", img:"img/rdl.jpg"},
+     {ex:"バーベル・ヒップスラスト",sets:4,reps:10,rpe:true,
+      desc:"肩甲骨をベンチに、骨盤を後傾しながら臀筋で持ち上げる。", img:"img/hip_thrust.jpg"},
+     {ex:"スライドボード・リーチ",sets:3,reps:12,rpe:false,
+      desc:"片脚支持で反対脚をスライド。股関節の“はまり”を保つ。", img:"img/slideboard_reach.jpg"}
+   ],
+   cond:"自走式トレッドミル 30秒×6–8"},
+
+  {title:"Day2｜上半身 × 電動式", treadmill:"電動式",
+   warmup:["骨盤回旋→胸郭分離","ループバンド肩甲骨活性"],
+   main:[
+     {ex:"ベンチプレス",sets:5,reps:5,rpe:true,
+      desc:"肩甲骨を寄せて下制。バーを胸にコントロールして押し上げる。", img:"img/bench_press.jpg"},
+     {ex:"ワンアーム・ダンベルロウ",sets:4,reps:10,rpe:true,
+      desc:"胸を張り、肘で引く意識。骨盤は水平を保つ。", img:"img/one_arm_row.jpg"},
+     {ex:"オーバーヘッドプレス",sets:4,reps:8,rpe:true,
+      desc:"肋骨の前突を抑え、頭上へ真直線に押し上げる。", img:"img/overhead_press.jpg"},
+     {ex:"レッドコード・プッシュアップ",sets:3,reps:12,rpe:false,
+      desc:"不安定環境で体幹・肩甲帯を統合。体を一直線に。", img:"img/redcord_pushup.jpg"},
+     {ex:"メディシンボール・スラム",sets:4,reps:6,rpe:false,
+      desc:"股関節伸展→体幹屈曲の連鎖で床に叩きつける。", img:"img/mb_slam.jpg"}
+   ],
+   cond:"電動トレッドミル 40秒/20秒×10"},
+
+  {title:"Day3｜全身 × 自走式", treadmill:"自走式",
+   warmup:["キャット&カウ（腰椎分離）","レッドコード・骨盤回旋"],
+   main:[
+     {ex:"デッドリフト",sets:5,reps:5,rpe:true,
+      desc:"バーベルは脛に近く。背中は“まっすぐ長く”。股関節で引く。", img:"img/deadlift.jpg"},
+     {ex:"ランドマイン・サイドベンド",sets:4,reps:12,rpe:true,
+      desc:"片手保持で側屈。肋骨を締め、骨盤は水平。", img:"img/landmine_sidebend.jpg"},
+     {ex:"ウォーターバッグ・キャリー",sets:4,reps:20,unit:"m",rpe:false,
+      desc:"水の揺れに抗しながら歩行。体幹と骨盤の安定を養う。", img:"img/waterbag_carry.jpg"},
+     {ex:"ステップ台ジャンプ",sets:5,reps:5,rpe:false,
+      desc:"静音着地。股関節主導で反発を活かす。", img:"img/step_jump.jpg"},
+     {ex:"スライドボード・ラテラルプッシュ",sets:4,reps:8,rpe:true,
+      desc:"外へ押し出す脚で骨盤をリード。内転筋と中殿を協調。", img:"img/slideboard_lateral.jpg"}
+   ],
+   cond:"自走式トレッドミル 20秒全力×8"},
+
+  {title:"Day4｜上半身＋コア × 電動式", treadmill:"電動式",
+   warmup:["スライドボード骨盤前傾/後傾","メディシンボール・キャッチ"],
+   main:[
+     {ex:"インクラインベンチプレス",sets:4,reps:8,rpe:true,
+      desc:"胸上部狙い。腰反り過ぎに注意。", img:"img/incline_bench.jpg"},
+     {ex:"プルアップ",sets:4,reps:8,rpe:true,
+      desc:"肩甲骨下制→肘を引く。首は長く。", img:"img/pullup.jpg"},
+     {ex:"ダンベル・フロアプレス",sets:3,reps:12,rpe:true,
+      desc:"床反力で肩の前ズレを抑えつつプレス。", img:"img/db_floor_press.jpg"},
+     {ex:"バンド・アンチローテーションプレス",sets:3,reps:15,unit:"秒",rpe:false,
+      desc:"骨盤を正対させ、胸郭の回旋を抑えて押す。", img:"img/anti_rotation_press.jpg"},
+     {ex:"レッドコード・シングルレッグカール",sets:3,reps:12,rpe:false,
+      desc:"腿裏で引き込みつつ骨盤前傾を失わない。", img:"img/redcord_legcurl.jpg"}
+   ],
+   cond:"電動トレッドミル 20分 (HRmax 60–70%)"},
+
+  {title:"Day5（任意）｜体重調整", treadmill:"電動式",
+   warmup:["骨盤分離ドリル 前後傾/側傾/回旋"],
+   main:[
+     {ex:"スライドボード有酸素",sets:1,reps:30,unit:"分",rpe:false,
+      desc:"会話可能〜ややキツい強度で持続。", img:"img/slideboard_cardio.jpg"},
+     {ex:"ループバンド・ヒップサークル",sets:3,reps:20,rpe:false,
+      desc:"骨盤水平を保ち、小刻みに側方移動。", img:"img/hip_circle.jpg"},
+     {ex:"体幹：デッドバグ/サイドプランク",sets:3,reps:12,rpe:false,
+      desc:"肋骨を締め、骨盤ニュートラルで制御。", img:"img/core_combo.jpg"}
+   ],
+   cond:"軽いウォーク 10–15分"}
+];
+
+/* ========== タブ＆描画 ========== */
+const tabs=document.getElementById('tabs'),content=document.getElementById('content');
+PROGRAM.forEach((d,i)=>{const b=document.createElement('button');b.className='tab'+(i==0?' active':'');b.textContent=d.title.split('｜')[0];b.onclick=()=>switchDay(i);tabs.appendChild(b);});
+switchDay(0);
+
+const KEY="introplan_full_desc_img";
+function loadAll(){try{return JSON.parse(localStorage.getItem(KEY)||"{}");}catch(e){return {};}}
+function saveAll(d){localStorage.setItem(KEY,JSON.stringify(d));}
+function getPath(day,name){return `d${day}_${name}`;}
+
+function switchDay(i){[...tabs.children].forEach((n,ix)=>n.classList.toggle('active',ix===i));renderDay(i);}
+
+/* ========== プレースホルダSVG（dataURL生成） ========== */
+function svgPlaceholder(title){
+  const pad = 16;
+  const w = 800, h = 450;
+  const fontSize = 28;
+  const subtitle = "画像未設定：img/xxx.jpg を設定してください";
+  const svg = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#f7f7f7"/><stop offset="100%" stop-color="#ebebeb"/>
+      </linearGradient>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#g)"/>
+    <rect x="${pad}" y="${pad}" width="${w-2*pad}" height="${h-2*pad}" fill="none" stroke="#cccccc" stroke-dasharray="6 6" rx="12"/>
+    <text x="50%" y="45%" font-size="${fontSize}" font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial" text-anchor="middle" fill="#333">${title}</text>
+    <text x="50%" y="60%" font-size="16" text-anchor="middle" fill="#777">${subtitle}</text>
+  </svg>`;
+  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+
+/* ========== 描画本体 ========== */
+function renderDay(i){
+  const d=PROGRAM[i],data=loadAll();const wrap=document.createElement('div');
+
+  const head=document.createElement('section');
+  head.innerHTML=`<h2>${d.title}</h2><div class="row"><span class="chip">トレッドミル:${d.treadmill}</span></div>`;
+  wrap.appendChild(head);
+
+  const wu=document.createElement('section');wu.innerHTML="<h2>ウォームアップ</h2>";
+  const ul=document.createElement('ul');d.warmup.forEach(s=>{const li=document.createElement('li');li.textContent=s;ul.appendChild(li);});
+  wu.appendChild(ul);wrap.appendChild(wu);
+
+  const mainS=document.createElement('section');mainS.innerHTML="<h2>メイン</h2>";
+  const tw=document.createElement('div');tw.className="table-wrap";
+  const tbl=document.createElement('table');tbl.innerHTML=`<thead><tr>
+      <th>種目</th><th>セット</th><th>回数</th><th>重量(kg)</th><th>RPE</th><th>ボリューム(kg)</th><th>メモ</th>
+    </tr></thead>`;
+  const tb=document.createElement('tbody');tbl.appendChild(tb);
+
+  const foot=document.createElement('div');foot.className="foot";foot.innerHTML=`<div class="total">総ボリューム:<span id="tv">0</span>kg</div>`;
+  function totalize(){const sum=[...tb.querySelectorAll('.vol')].reduce((a,i)=>a+(+i.value||0),0);foot.querySelector('#tv').textContent=sum;}
+
+  d.main.forEach((m,ix)=>{
+    const tr=document.createElement('tr');
+    const path=k=>getPath(i,`m${ix}_${k}`);
+    const sets=data[path('sets')]??m.sets, reps=data[path('reps')]??m.reps, wt=data[path('wt')]??'', rpe=data[path('rpe')]??'', memo=data[path('memo')]??'';
+
+    tr.innerHTML=`<td>
+        <span class="exercise">${m.ex}${m.unit?` <span class="chip">${m.unit}</span>`:''}</span>
+        <button class="btn ghost ill">🖼 イラスト</button>
+        <div class="desc">${m.desc||""}</div>
+      </td>
+      <td><input type="number" value="${sets}" class="sets"></td>
+      <td><input type="number" value="${reps}" class="reps"></td>
+      <td><input type="number" value="${wt}" class="wt" ${m.unit?'placeholder="—"':''}></td>
+      <td>${m.rpe?`<input type="number" value="${rpe}" class="rpe">`:`—`}</td>
+      <td><input type="text" class="vol" readonly></td>
+      <td><input type="text" class="wide memo" value="${memo}"></td>`;
+    tb.appendChild(tr);
+
+    const $s=tr.querySelector('.sets'),$r=tr.querySelector('.reps'),$w=tr.querySelector('.wt'),$p=tr.querySelector('.rpe'),$m=tr.querySelector('.memo'),$v=tr.querySelector('.vol');
+    const $ex=tr.querySelector('.exercise'),$desc=tr.querySelector('.desc'), $ill=tr.querySelector('.ill');
+
+    if($ex&&$desc){$ex.addEventListener('click',()=>{$desc.style.display=$desc.style.display==="none"?"block":"none";});}
+
+    // イラスト・モーダル
+    if($ill){
+      $ill.addEventListener('click', ()=>{
+        openModal(m.ex, m.img || svgPlaceholder(m.ex));
+      });
+    }
+
+    function calc(){
+      if(m.unit&&["m","秒","分"].includes(m.unit)){$v.value="";}
+      else{const val=(+$s.value||0)*(+$r.value||0)*(+$w.value||0); $v.value=val?val.toFixed(0):"";}
+      totalize();
+    }
+    function persist(){
+      const all=loadAll();
+      all[path('sets')]=$s.value; all[path('reps')]=$r.value; all[path('wt')]=$w.value;
+      all[path('rpe')]=$p?$p.value:''; all[path('memo')]=$m.value; saveAll(all);
+    }
+    [$s,$r,$w,$m].forEach(el=>{el.addEventListener('input',()=>{calc();persist();});});
+    if($p)$p.addEventListener('input',persist);
+    calc();
+  });
+
+  tw.appendChild(tbl); mainS.appendChild(tw); mainS.appendChild(foot); wrap.appendChild(mainS);
+
+  const cond=document.createElement('section');cond.innerHTML=`<h2>コンディショニング</h2><div>${d.cond}</div>`;
+  wrap.appendChild(cond);
+
+  content.innerHTML=""; content.appendChild(wrap);
+}
+
+/* ========== モーダル ========== */
+const modal = document.getElementById('modal');
+const modalTitle = document.getElementById('modalTitle');
+const modalBody = document.getElementById('modalBody');
+
+function openModal(title, src){
+  modalTitle.textContent = title;
+  modalBody.innerHTML = '';
+  // img要素を用意。読み込み失敗時はSVGプレースホルダに置換。
+  const img = new Image();
+  img.alt = title;
+  img.onload = ()=>{ modalBody.innerHTML=''; modalBody.appendChild(img); };
+  img.onerror = ()=>{
+    modalBody.innerHTML = '';
+    const ph = document.createElement('div');
+    ph.className='placeholder';
+    ph.textContent = `${title}（画像未設定）`;
+    modalBody.appendChild(ph);
+  };
+  img.src = src;
+  modal.classList.add('open');
+}
+function closeModal(){ modal.classList.remove('open'); }
+modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
+
+</script>
+</body>
+</html>
