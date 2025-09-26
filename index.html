@@ -44,49 +44,71 @@
   .modal-body{display:grid; gap:10px;}
   .modal-body img{width:100%; height:auto; border:1px solid var(--line); border-radius:8px;}
   .placeholder{width:100%; aspect-ratio:16/9; border:1px dashed var(--line); border-radius:8px; display:grid; place-items:center; color:var(--muted); font-size:14px; background:#fafafa;}
-/* ===== カード型レイアウト ===== */
-@media (max-width: 768px) { /* スマホ・タブレット幅だけカード表示に */
+@media (max-width: 768px) {
   table, thead, tbody, th, td, tr {
-    display: block;          /* テーブル要素をブロックにして分解 */
+    display: block;
   }
-
-  thead { display: none; }   /* ヘッダ行は非表示 */
+  thead { display: none; }
 
   tr {
     background: #fff;
     border: 1px solid var(--line);
-    border-radius: 12px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    margin: 12px 0;
-    padding: 12px;
+    border-radius: 14px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    margin: 16px 0;
+    padding: 16px 14px;
   }
 
   td {
     border: none;
-    padding: 4px 0;
+    padding: 6px 0;
   }
 
-  /* 最初のセル（種目名）はタイトルっぽく */
+  /* 種目名＋イラストボタンを横並び */
   td:first-child {
-    font-weight: bold;
-    font-size: 1.1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.15em;
     color: var(--accent);
-    margin-bottom: 6px;
+    margin-bottom: 10px;
+  }
+  td:first-child .exercise {
+    flex: 1;
+    margin-right: 10px;
+  }
+  td:first-child .btn {
+    flex-shrink: 0;
+    font-size: 11px;
+    padding: 4px 8px;
   }
 
-  /* 他のセルはラベル付きに見せる */
+  /* ラベル付きの情報行 */
   td:nth-child(n+2)::before {
     display: inline-block;
     font-weight: 600;
     color: var(--muted);
-    width: 80px;
+    width: 90px;
   }
-  td:nth-child(2)::before { content: "セット: "; }
-  td:nth-child(3)::before { content: "回数: "; }
-  td:nth-child(4)::before { content: "重量: "; }
-  td:nth-child(5)::before { content: "RPE: "; }
-  td:nth-child(6)::before { content: "ボリューム: "; }
-  td:nth-child(7)::before { content: "メモ: "; }
+  td:nth-child(2)::before { content: "セット"; }
+  td:nth-child(3)::before { content: "回数"; }
+  td:nth-child(4)::before { content: "重量"; }
+  td:nth-child(5)::before { content: "RPE"; }
+  td:nth-child(6)::before { content: "ボリューム"; }
+  td:nth-child(7)::before { content: "メモ"; }
+
+  /* 入力欄を幅いっぱいに整える */
+  input[type="number"], input[type="text"] {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    margin-top: 2px;
+    padding: 6px 8px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  input.wide { width: 100%; }
 }
 </style>
 </head>
