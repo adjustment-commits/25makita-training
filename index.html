@@ -44,24 +44,49 @@
   .modal-body{display:grid; gap:10px;}
   .modal-body img{width:100%; height:auto; border:1px solid var(--line); border-radius:8px;}
   .placeholder{width:100%; aspect-ratio:16/9; border:1px dashed var(--line); border-radius:8px; display:grid; place-items:center; color:var(--muted); font-size:14px; background:#fafafa;}
-/* スマホ対応（600px以下の画面用） */
-@media (max-width: 600px) {
-  table {
-    font-size: 13px;          /* 全体の文字サイズを少し小さめに */
+/* ===== カード型レイアウト ===== */
+@media (max-width: 768px) { /* スマホ・タブレット幅だけカード表示に */
+  table, thead, tbody, th, td, tr {
+    display: block;          /* テーブル要素をブロックにして分解 */
   }
-  th, td {
-    padding: 6px 4px;         /* セルの余白を少なめに */
+
+  thead { display: none; }   /* ヘッダ行は非表示 */
+
+  tr {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    margin: 12px 0;
+    padding: 12px;
   }
+
+  td {
+    border: none;
+    padding: 4px 0;
+  }
+
+  /* 最初のセル（種目名）はタイトルっぽく */
   td:first-child {
-    white-space: nowrap;      /* 種目名を改行させない */
-    min-width: 120px;         /* 横幅を最低限確保 */
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--accent);
+    margin-bottom: 6px;
   }
-  .table-wrap {
-    overflow-x: auto;         /* スマホで横スクロール可能に */
+
+  /* 他のセルはラベル付きに見せる */
+  td:nth-child(n+2)::before {
+    display: inline-block;
+    font-weight: 600;
+    color: var(--muted);
+    width: 80px;
   }
-  table {
-    min-width: 500px;         /* 表が潰れないよう最低幅を設定 */
-  }
+  td:nth-child(2)::before { content: "セット: "; }
+  td:nth-child(3)::before { content: "回数: "; }
+  td:nth-child(4)::before { content: "重量: "; }
+  td:nth-child(5)::before { content: "RPE: "; }
+  td:nth-child(6)::before { content: "ボリューム: "; }
+  td:nth-child(7)::before { content: "メモ: "; }
 }
 </style>
 </head>
