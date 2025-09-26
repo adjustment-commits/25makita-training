@@ -44,6 +44,25 @@
   .modal-body{display:grid; gap:10px;}
   .modal-body img{width:100%; height:auto; border:1px solid var(--line); border-radius:8px;}
   .placeholder{width:100%; aspect-ratio:16/9; border:1px dashed var(--line); border-radius:8px; display:grid; place-items:center; color:var(--muted); font-size:14px; background:#fafafa;}
+/* スマホ対応（600px以下の画面用） */
+@media (max-width: 600px) {
+  table {
+    font-size: 13px;          /* 全体の文字サイズを少し小さめに */
+  }
+  th, td {
+    padding: 6px 4px;         /* セルの余白を少なめに */
+  }
+  td:first-child {
+    white-space: nowrap;      /* 種目名を改行させない */
+    min-width: 120px;         /* 横幅を最低限確保 */
+  }
+  .table-wrap {
+    overflow-x: auto;         /* スマホで横スクロール可能に */
+  }
+  table {
+    min-width: 500px;         /* 表が潰れないよう最低幅を設定 */
+  }
+}
 </style>
 </head>
 <body>
