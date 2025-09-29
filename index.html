@@ -285,7 +285,6 @@ head.innerHTML = `
       <td><input type="number" value="${sets}" class="sets"></td>
       <td><input type="number" value="${reps}" class="reps"></td>
       <td><input type="number" value="${wt}" class="wt" ${m.unit?'placeholder="—"':''}></td>
-      <td>${m.rpe?`<input type="number" value="${rpe}" class="rpe">`:`—`}</td>
       <td><input type="text" class="vol" readonly></td>
       <td><input type="text" class="wide memo" value="${memo}"></td>`;
     tb.appendChild(tr);
@@ -310,7 +309,7 @@ head.innerHTML = `
     function persist(){
       const all=loadAll();
       all[path('sets')]=$s.value; all[path('reps')]=$r.value; all[path('wt')]=$w.value;
-      all[path('rpe')]=$p?$p.value:''; all[path('memo')]=$m.value; saveAll(all);
+      all[path('memo')]=$m.value; saveAll(all);
     }
     [$s,$r,$w,$m].forEach(el=>{el.addEventListener('input',()=>{calc();persist();});});
     if($p)$p.addEventListener('input',persist);
