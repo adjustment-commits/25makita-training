@@ -4,6 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>導入期トレーニング（10–12月）— 社会人硬式：27歳・パワーヒッター</title>
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0a7">
 <style>
   :root{--ink:#111;--muted:#666;--line:#ddd;--bg:#fafafa;--accent:#0a7;}
   body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; color:var(--ink); margin:0; background:var(--bg);}
@@ -361,6 +363,11 @@ function openModal(title, src){
 }
 function closeModal(){ modal.classList.remove('open'); }
 modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
+
+  if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js")
+    .then(() => console.log("Service Worker registered"));
+}
 
 </script>
 </body>
