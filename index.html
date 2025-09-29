@@ -94,8 +94,8 @@
   td:nth-child(2)::before { content: "セット"; }
   td:nth-child(3)::before { content: "回数"; }
   td:nth-child(4)::before { content: "重量"; }
-  td:nth-child(6)::before { content: "ボリューム"; }
-  td:nth-child(7)::before { content: "メモ"; }
+  td:nth-child(5)::before { content: "ボリューム"; }
+  td:nth-child(6)::before { content: "メモ"; }
 
   /* 入力欄を幅いっぱいに整える */
   input[type="number"], input[type="text"] {
@@ -259,7 +259,10 @@ head.innerHTML = `
   wrap.appendChild(head);
 
   const wu=document.createElement('section');wu.innerHTML="<h2>ウォームアップ</h2>";
-  const ul=document.createElement('ul');d.warmup.forEach(s=>{const li=document.createElement('li');li.textContent=s;ul.appendChild(li);});
+  const ul=document.createElement('ul');d.warmup.forEach(s=>{const li=document.createElement('li'); if(idx===0 && s.includes("推奨エクササイズ")){
+    li.innerHTML = `〈${s}〉`;  // 最初だけ〈〉で囲む
+  } else {
+li.textContent=s;ul.appendChild(li);});
   wu.appendChild(ul);wrap.appendChild(wu);
 
   const mainS=document.createElement('section');mainS.innerHTML="<h2>メイン</h2>";
