@@ -261,13 +261,16 @@ head.innerHTML = `
   const wu=document.createElement('section');wu.innerHTML="<h2>ウォームアップ</h2>";
 const ul=document.createElement('ul');
 d.warmup.forEach((s, idx) => {
-  const li = document.createElement('li');
   if(idx === 0 && s.includes("推奨エクササイズ")){
-    li.innerHTML = `〈${s}〉`;  // 最初だけ〈〉で囲む
+    // 最初だけ li じゃなくて div で
+    const div = document.createElement('div');
+    div.innerHTML = `〈${s}〉`;  
+    ul.parentNode?.insertBefore(div, ul); // ulの前に挿入する
   } else {
+    const li = document.createElement('li');
     li.textContent = s;
+    ul.appendChild(li);
   }
-  ul.appendChild(li);
 });
   wu.appendChild(ul);wrap.appendChild(wu);
 
