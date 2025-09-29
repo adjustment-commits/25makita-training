@@ -259,21 +259,23 @@ head.innerHTML = `
   wrap.appendChild(head);
 
   const wu=document.createElement('section');wu.innerHTML="<h2>ウォームアップ</h2>";
+const wu=document.createElement('section');
+wu.innerHTML="<h2>ウォームアップ</h2>";
 const ul=document.createElement('ul');
-d.warmup.forEach((s, idx) => {
-  if(idx === 0 && s.includes("推奨エクササイズ")){
-    // 最初だけ li じゃなくて div で
-    const div = document.createElement('div');
-    div.innerHTML = `〈${s}〉`;  
-    ul.parentNode?.insertBefore(div, ul); // ulの前に挿入する
-  } else {
-    const li = document.createElement('li');
-    li.textContent = s;
-    ul.appendChild(li);
-  }
-});
-  wu.appendChild(ul);wrap.appendChild(wu);
 
+d.warmup.forEach((s, idx) => {
+  const li=document.createElement('li');
+  if(idx === 0 && s.includes("推奨エクササイズ")){
+    li.style.listStyleType = "none";  // 「・」を消す
+    li.innerHTML = `〈${s}〉`;         // 〈推奨エクササイズ〉
+  } else {
+    li.textContent = s;
+  }
+  ul.appendChild(li);
+});
+
+wu.appendChild(ul);
+wrap.appendChild(wu);
   const mainS=document.createElement('section');mainS.innerHTML="<h2>メイン</h2>";
   const tw=document.createElement('div');tw.className="table-wrap";
   const tbl=document.createElement('table');tbl.innerHTML=`<thead><tr>
