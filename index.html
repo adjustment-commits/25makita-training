@@ -149,12 +149,12 @@ const PROGRAM = [
       desc:"ランドマインを保持し後方へ大きくステップ。前脚で強く押し戻す。", img:"img/day1-2-LMRL.png"},
      {ex:"ルーマニアンデッドリフト",sets:4,reps:8,rpe:true,
       desc:"膝は軽く曲げたまま股関節で前傾。ハムの伸張を感じて戻る。", img:"img/day1-3-RDL.png"},
-         {ex:"スライドボード・リーチ",sets:3,reps:12,rpe:false,
+     {ex:"スライドボード・リーチ",sets:3,reps:12,rpe:false,
       desc:"片脚支持で反対脚をスライド。股関節の“はまり”を保つ。", img:"img/day1-5-SBR.png"}
    ],
-   cond:"自走式トレッドミル 30秒×6–8"},
+   cond:"自走式トレッドミル 15秒全力×1セット（HRpeak 190前後）。各セット後にウォークでHR130まで回復。目的：下肢パワー出力後の神経リカバリーと呼吸統合。"},
 
-  {title:"Day2｜上半身 × 電動式",treadmill:"電動式", intensity:"60〜75％", volume:"6,000〜9,000kg",
+  {title:"Day2｜上半身 × 自走式", treadmill:"自走式", intensity:"60〜75％", volume:"6,000〜9,000kg",
    warmup:["推奨エクササイズ","骨盤回旋→胸郭分離","ループバンド肩甲骨活性"],
    main:[
      {ex:"ベンチプレス",sets:5,reps:5,rpe:true,
@@ -168,7 +168,7 @@ const PROGRAM = [
      {ex:"メディシンボール・スラム",sets:4,reps:6,rpe:false,
       desc:"股関節伸展→体幹屈曲の連鎖で床に叩きつける。", img:"img/day2-5-MBS.png"}
    ],
-   cond:"電動トレッドミル 40秒高速/20秒低速×10"},
+   cond:"自走式トレッドミル15秒全力×3セット（HRpeak 185〜190）。各セット後にウォークでHR130まで回復。目的：上半身トレ後の全身循環と交感→副交感切替訓練。"},
 
   {title:"Day3｜全身 × 自走式", treadmill:"自走式", intensity:"60〜75％", volume:"12,000〜18,000kg",
    warmup:["推奨エクササイズ","キャット&ドッグ（腰椎分離）","レッドコード・骨盤回旋"],
@@ -177,7 +177,7 @@ const PROGRAM = [
       desc:"バーベルは脛に近く。背中は“まっすぐ長く”。股関節で引く。", img:"img/day3-1-DL.jpg"},
      {ex:"ランドマイン・サイドベンド",sets:4,reps:12,rpe:true,
       desc:"片手保持で側屈。肋骨を締め、骨盤は水平。", img:"img/day3-2-RMSB.jpg"},
-      {ex:"バーベル・ヒップスラスト",sets:4,reps:10,rpe:true,
+     {ex:"バーベル・ヒップスラスト",sets:4,reps:10,rpe:true,
       desc:"肩甲骨をベンチに、骨盤を後傾しながら臀筋で持ち上げる。", img:"img/day1-4-BHS.png"},
      {ex:"ウォーターバッグ・キャリー",sets:4,reps:20,unit:"m",rpe:false,
       desc:"水の揺れに抗しながら歩行。体幹と骨盤の安定を養う。", img:"img/day3-3-WBC.jpg"},
@@ -186,9 +186,9 @@ const PROGRAM = [
      {ex:"スライドボード・ラテラルプッシュ",sets:4,reps:8,rpe:true,
       desc:"外へ押し出す脚で骨盤をリード。内転筋と中殿を協調。", img:"img/day3-5-SBLP.jpg"}
    ],
-   cond:"自走式トレッドミル 20秒全力×8"},
+   cond:"自走式トレッドミル 20秒全力×1セット（HRpeak 190前後）。セット間はHR130までウォーク。目的：全身出力の神経統合と呼吸回復能力の強化。"},
 
-  {title:"Day4｜上半身＋コア × 電動式",treadmill:"電動式", intensity:"60〜75％", volume:"5,000〜8,000kg",
+  {title:"Day4｜上半身＋コア × 自走式", treadmill:"自走式", intensity:"60〜75％", volume:"5,000〜8,000kg",
    warmup:["推奨エクササイズ","スライドボード骨盤前傾/後傾","メディシンボール・キャッチ"],
    main:[
      {ex:"インクラインベンチプレス",sets:4,reps:8,rpe:true,
@@ -202,9 +202,9 @@ const PROGRAM = [
      {ex:"レッドコード・シングルレッグカール",sets:3,reps:12,rpe:false,
       desc:"腿裏で引き込みつつ骨盤前傾を失わない。", img:"img/day4-5-RCSC.png"}
    ],
-   cond:"電動トレッドミル 20分 (HRmax 60–70%)"},
+   cond:"自走式トレッドミル 15秒全力×3セット（HRpeak 185〜190）。各セット後にウォークでHR130まで回復。目的：コアと上肢の張力維持下でのリカバリー練習。"},
 
-  {title:"Day5（任意）｜体重調整", treadmill:"電動式", intensity:"60〜75％", volume:"1,000〜3,000kg",
+  {title:"Day5（任意）｜体重調整 × 自走式", treadmill:"自走式", intensity:"60〜75％", volume:"1,000〜3,000kg",
    warmup:["推奨エクササイズ","骨盤分離ドリル 前後傾/側傾/回旋"],
    main:[
      {ex:"スライドボード有酸素",sets:5,reps:1,unit:"分",rpe:false,
@@ -214,7 +214,7 @@ const PROGRAM = [
      {ex:"体幹：デッドバグ/サイドプランク",sets:3,reps:12,rpe:false,
       desc:"肋骨を締め、骨盤ニュートラルで制御。", img:"img/day5-3-DBSP.jpg"}
    ],
-   cond:"軽いウォーク 10–15分"}
+   cond:"自走式トレッドミル 20秒全力×2セット（HRpeak 180前後）。HR130までウォークしながら呼吸を整える。目的：リカバリー促進と神経リセット。"}
 ];
 
 /* ========== タブ＆描画 ========== */
